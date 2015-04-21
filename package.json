@@ -1,0 +1,15 @@
+{
+  "name": "d3nyc",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.6.4",
+    "gulp": "^3.8.11",
+    "gulp-compass": "^2.0.4",
+    "gulp-eslint": "^0.9.0",
+    "gulp-if": "^1.2.5",
+    "gulp-minify-css": "^1.1.0",
+    "gulp-sass": "^1.3.3",
+    "gulp-util": "^3.0.4"
+  }
+}

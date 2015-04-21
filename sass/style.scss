@@ -1,0 +1,20 @@
+//////////////////////////////
+// D3nyc
+//////////////////////////////
+@import "compass";
+require 'zen-grids';
+@import "vars";
+
+@import "layout";
+body{background-color: $baseColor;
+  &.about{background-color: $baseColor;}
+  &a{
+    &:hover{color:pink;}
+  }
+}
+
+#box-shadow-custom {
+  font-size:18px;
+}
+
+
