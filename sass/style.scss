@@ -2,9 +2,8 @@
 // D3nyc
 //////////////////////////////
 @import "compass";
-require 'zen-grids';
 @import "vars";
-
+@import "zen";
 @import "layout";
 body{background-color: $baseColor;
   &.about{background-color: $baseColor;}
