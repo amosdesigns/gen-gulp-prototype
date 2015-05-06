@@ -13,7 +13,7 @@
     "borealis": "~1.0.1"
   },
   "devDependencies": {
-    "north": "~0.2.0"
+    "north": "~0.2.0",
+    "angular": "~1.3.15"
   }
 }
-
