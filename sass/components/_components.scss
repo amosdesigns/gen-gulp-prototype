@@ -1,0 +1,28 @@
+// Components
+//
+// Design components are reusable designs that can be applied using just the CSS
+// class names specified in the component.
+//
+// Styleguide 6
+
+
+// Panel and Node Specific Pages
+
+
+// Drupal Components
+//
+// Built-in Drupal components. Styles included to make Drupal work properly.
+//
+// Styleguide 7
+@import "forms-drupal";
+@import "item-list";
+@import "skip-link";
+@import "more-link";
+
+// Partials
+@import "petition";
+// Undocumented
+//
+// **@TODO: These components need to be documented** and placed in the 6.0 section of the style guide. These components may also need to be refactored.
+//
+// Styleguide 8

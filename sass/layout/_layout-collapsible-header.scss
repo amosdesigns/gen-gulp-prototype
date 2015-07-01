@@ -1,0 +1,137 @@
+// Operation Watch
+// TODO: Add to style guide
+
+.page--collapsible-header {
+  .page-content {
+    @include respond-to(tablet-landscape) {
+      // Move the content down to accomodate the top nav
+      @include rem(margin-top, $collapsible-header-height);
+    }
+  }
+
+  #site-header {
+    @include respond-to(tablet-landscape) {
+      left: 0;
+      top: 0;
+      position: fixed;
+      width: 100%;
+      z-index: 6;
+      @include rem(height, $collapsible-header-height);
+      @include transition(height 0.3s);
+
+      &.opwatch_bar_active {
+        // Expanded header
+        &.site-header--expanded {
+          @include rem(height, 144px);
+        }
+        .site-header-inner {
+          @include rem(height, 144px);
+          @include rem(margin, -144px auto);
+        }
+      }
+
+      // Expanded header
+      &.site-header--expanded {
+        @include rem(height, 120px);
+        .site-header-inner {
+          margin-top: 0;
+        }
+        #mobile-controls {
+          display: none;
+        }
+        #site-name {
+          @include rem(padding-top, 26px);
+        }
+      }
+    }
+  }
+
+  #site-name {
+    @include respond-to(tablet-landscape) {
+      position: fixed;
+      top: 0;
+      width: 25%;
+      @include rem(padding-top, 7px);
+      @include transition(padding-top 0.3s);
+    }
+    @include respond-to(desktop) {
+      width: 15%;
+      z-index: 1;
+    }
+  }
+
+  .site-header-inner {
+    @include respond-to(tablet-landscape) {
+      @include rem(height, 120px);
+      @include rem(margin, -120px auto);
+      @include rem(padding, 0 30px);
+      @include transition(margin-top 0.3s);
+      .mobile-device & {
+        @include rem(height, 172px);
+        @include rem(margin, -172px auto);
+      }
+    }
+  }
+
+  #site-search {
+    @include respond-to(tablet-landscape) {
+      @include rem(top, 6px);
+    }
+  }
+
+  .main-nav {
+    position: relative; // Needed for overlap of discussion widget on opwatch
+    z-index: 9998;
+    @include respond-to(tablet-landscape) {
+      z-index: auto;
+      @include rem(margin-top, 6px);
+      overflow: visible;
+    }
+  }
+
+  .sub-navigation {
+    @include respond-to(desktop) {
+      @include rem(width, 1170px);
+    }
+  }
+
+  #mobile-controls {
+    @include respond-to(tablet-landscape) {
+      display: block;
+      position: fixed;
+      right: 0;
+      top: 0;
+      margin-right: 0;
+      li {
+        border: 0;
+      }
+      @include rem(width, 140px);
+      .toggle-login {
+        display: none;
+      }
+      .toggle-search {
+        @include rem(margin-left, -100px);
+      }
+    }
+    @include respond-to(desktop) {
+      right: auto;
+      width: inherit;
+      @include rem(margin-left, -30px);
+    }
+  }
+
+  &.admin-menu {
+    #site-header,
+    #site-name,
+    #mobile-controls {
+      @include rem(margin-top, $hp-admin-offset);
+    }
+
+    .page-content {
+      @include respond-to(tablet-landscape) {
+        // Move the content down to accomodate the top nav
+        @include rem(margin-top, $collapsible-header-height + $hp-admin-offset);
+      }
+    }
+  }
+}

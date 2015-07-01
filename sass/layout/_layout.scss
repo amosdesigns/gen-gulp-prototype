@@ -1,0 +1,34 @@
+// Layouts
+//
+// The layout styling for major parts of the page are not included with the Leanforward theme. They are included with the Panels layouts of custom modules in the sites/msnbc/modules/custom directory.
+//
+// Styleguide 5
+
+
+// Panels layouts
+//
+//
+// * **[panel_article](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/pub_article/plugins/layouts/panel_article/scss/layout.scss)** — located in the **pub_article** module
+// * **[panel_article_portrait](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/pub_article/plugins/layouts/panel_article_portrait/scss/layout.scss)** — located in the **pub_article** module
+// * **[panel_explore](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_explore/plugins/layouts/panel_explore/scss/layout.scss)** — located in the **msnbc_explore** module
+// * **[panel_issue](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_topics/plugins/layouts/panel_issue/scss/layout.scss)** — located in the **msnbc_topics** module
+// * **[panel_joinin](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_joinin/plugins/layouts/panel_joinin/scss/layout.scss)** — located in the **msnbc_joinin** module
+// * **[panel_search](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_search/plugins/layouts/panel_search/scss/layout.scss)** — located in the **msnbc_search** module
+// * **[panel_show](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/pub_news_show/plugins/layouts/panel_show/scss/layout.scss)** — located in the **pub_news_show** module
+// * **[panel_twocol_66-33](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_ctools/plugins/layouts/panel_twocol_66-33/scss/layout.scss)** — located in the **msnbc_ctools** module
+// * **[panel_twocol_wideleft](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_ctools/plugins/layouts/panel_twocol_wideleft/scss/layout.scss)** — located in the **msnbc_ctools** module
+// * **[panel_twocol_wideleft_hero](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_ctools/plugins/layouts/panel_twocol_wideleft_hero/scss/layout.scss)** — located in the **msnbc_ctools** module
+// * **[panel_video](https://github.com/NBCUOTS/Publisher7_msnbc/blob/master/modules/custom/msnbc_theplatform/plugins/layouts/panel_video/scss/layout.scss)** — located in the **msnbc_theplatform** module
+//
+// Styleguide 5.1
+
+
+@import "layout-base";
+@import "layout-header";
+@import "layout-watch-navigation";
+@import "layout-footer";
+@import "layout-panels";
+@import "layout-off-canvas";
+@import "layout-opwatch";
+@import "layout-collapsible-header";
+@import "layout-show2";

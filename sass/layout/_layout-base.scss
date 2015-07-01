@@ -1,0 +1,82 @@
+/**
+ * @file
+ * layout/_layout-base.scss
+ * Describes the structure and layout at the smallest viewport sizes.
+ */
+
+.page {
+  min-width: 320px;
+  @include respond-to(desktop) {
+    max-width: 1230px;
+    margin: 0 auto;
+  }
+}
+
+.site-header,
+.page-content,
+.content-extended,
+.ad-container--lower,
+.site-footer {
+  @include zen-grid-container;
+}
+
+// Add all selectors that zen-grid-item is applied to
+.hero,
+.hero .ad,
+.article-image,
+.main-article {
+  @include zen-grid-item-base;
+}
+
+//
+// Page Content
+// ------------
+.hero {
+  @include zen-grid-item(6, 1, $column-count: 1);
+  @include zen-nested-container;
+
+  .ad {
+    // consider creating _ads.scss as a component
+    @include zen-grid-item(1, 1);
+  }
+
+}
+.article-image {
+  @include zen-grid-item(1, 1);
+}
+.main-article {
+  @include zen-grid-item(6, 1, $gutter-width: 30px);
+}
+
+// Elements that should not appear on mobile can be given this class.
+.no-mobile {
+  @include no-mobile();
+}
+.mobile-only {
+  @include mobile-only();
+}
+
+// The following classes are assigned to a list of items (most commonly
+// specific view displays) that should span differing numbers of columns across
+// various respond-tos.
+.g--1-2-4 .view-content {
+  @include breakpoint-grid-breakdown(1 2 4);
+}
+
+.g--1-1-2-4 .view-content {
+  // Remain in one column until tablet. Necessary for teaser--enhanced, etc.
+  @include breakpoint-grid-breakdown(1 2 4, 'mobile' 'tablet' 'tablet-landscape');
+}
+
+.g--1-1-2 .view-content {
+  @include breakpoint-grid-breakdown(1 1 2);
+}
+
+.g--1-2-1-2 .view-content {
+  @include breakpoint-grid-breakdown(1 2 1 2, 'mobile' 590px 'tablet' 'desktop');
+}
+
+// Used l-- to avoid clashing with the g-- namespaces used for grids with views
+.l--1-1-2 {
+  @include breakpoint-grid-breakdown(1 1 2, $selector: '.l--row');
+}

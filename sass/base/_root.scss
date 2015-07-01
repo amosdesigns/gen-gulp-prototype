@@ -1,0 +1,27 @@
+/* base/_root.scss */
+
+// Base structure
+// --------------
+// Applies the most basic settings for all elements and the html/body elements.
+
+* {
+  @include box-sizing($box-model);
+  text-rendering: optimizelegibility; // DRUPAL-2090
+}
+
+@include establish-baseline;
+
+html {
+  // Set fallback font family to sans-serif.
+  font-family: sans-serif;
+  // Prevent iOS text size adjust on orientation change without disabling user zoom.
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: $darkest;
+  font-family: $sans-stack;
+  @include baseline-grid-background;
+}

@@ -1,0 +1,78 @@
+// @file
+// Layout rules for the panel_show2 layout.
+//
+// A majority of layout rules for this panels layout can be found in the plugin
+// directory alongside the template. Gutters (padding) must be applied within
+// this theme to ensure access to and use of this theme's gutter width variable.
+
+// Remove the max-width from the page so .layout-show2__upper-wrapper can extend
+// the full-width of the page
+.page--show2 .page {
+  @include respond-to(desktop) {
+    max-width: none;
+  }
+}
+
+// Use the max-width normally set on .page
+.layout-show2__upper,
+.layout-show2__lower,
+.footer {
+  @include respond-to(desktop) {
+    max-width: 1230px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.page--show2 {
+  .footer-wrapper {
+    background: #eaeaea;
+    width: 100%;
+    .footer {
+      background: inherit;
+    }
+  }
+}
+// TODO
+// The layout rules applied below this come directly from the owpatch layout and
+// will need to be fine tuned according to the new show page designs.
+
+.layout-show2 {
+  @include trailer(1);
+  @include clearfix;
+}
+
+.layout-show2__top {
+  @include gutter(0 padding);
+}
+
+.layout-show2__bottom {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+    @include gutter(0, padding);
+  }
+}
+
+.layout-show2__bottom,
+.layout-show2__content {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+    @include gutter(0, padding, left);
+    @include gutter(full, padding, right);
+  }
+  @include respond-to(tablet) {
+    @include gutter(full, padding, left);
+  }
+}
+
+.layout-show2__rail {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+    @include gutter(half, padding, left);
+    @include gutter(0, padding);
+  }
+  .layout-show2--full-width & {
+    @include gutter(0, padding);
+  }
+}
+

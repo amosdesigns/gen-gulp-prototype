@@ -1,0 +1,16 @@
+// Skip link
+//
+// Link styling for the "skip to navigation" link styling.
+//
+// Markup:
+// <div id="skip">
+//  <a href="#">Jump to Navigation</a>
+// </div>
+//
+// Styleguide 7.3
+
+
+#skip {
+  position: absolute;
+  left: -9999px;
+}

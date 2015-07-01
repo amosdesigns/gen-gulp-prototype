@@ -1,0 +1,54 @@
+// Embedded content
+//
+// Responsive images & embedded content
+//
+// Markup:
+// <p>
+//   An inline image: <img src="/sites/msnbc/themes/leanforward/images/site-header/msnbc-logo-small.png">
+// </p>
+// <figure>
+//   <figcaption>A figure.</figcaption>
+//   <img src="/sites/msnbc/themes/leanforward/images/site-header/msnbc-logo-small.png">
+// </figure>
+//
+// Styleguide 4.4
+
+
+img {
+  border: 0; // Removes border when inside `a` element in IE9.
+  max-width: 100%; // Responsive images
+  height: auto;
+}
+
+// Images in figure elements.
+figure > img {
+  display:block;
+}
+
+/* Override max-width 100% for map displays */
+.gmap, .view-gmap, .openlayers-map, #getlocations_map_canvas {
+  img {
+    max-width: none;
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+svg:not(:root) {
+  // Corrects overflow displayed oddly in IE9.
+  overflow: hidden;
+}
+
+// Corrects inline-block not defined in IE6/7/8 and FF3.
+
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  display: none;
+}

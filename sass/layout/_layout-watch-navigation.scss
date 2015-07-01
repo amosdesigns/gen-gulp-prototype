@@ -1,0 +1,142 @@
+// Watch nav must align to the main-nav links in a 1110px max-width container
+// No grid combo allows for the math required, so we trick zen grids,
+// by creating a 1110 col grid. There is no performance loss, only brain matter.
+$watch-navigation-col-count: 1110;
+
+// Align to first two main nav links
+.layout-watch-navigation__featured-shows {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(540, 1, $column-count: $watch-navigation-col-count);
+  }
+}
+
+// Align to the beginning of the third main nav link
+.layout-watch-navigation__shows-weekday {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(371, 541, $column-count: $watch-navigation-col-count);
+    @include gutter(full, padding, left);
+  }
+}
+
+// Create enough space for longish titles in last col
+.layout-watch-navigation__shows-weekend {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(199, 911, $column-count: $watch-navigation-col-count);
+    @include gutter(full, padding, left);
+  }
+}
+
+// This is the container for the watch nav footer links
+.layout-watch-navigation__footer {
+  @include zen-grid-container;
+  @include zen-clear(both);
+  width: 100%;
+}
+
+// This is the container for the watch nav footer links
+.watch-secondary-level-btn-group {
+  @include zen-grid-container;
+  @include respond-to(tablet-landscape) {
+    width: 50%;
+    margin-left: 50%;
+  }
+}
+
+.layout-watch-navigation__footer__item--msnbctv {
+  display: none;
+  // Show if mobile not detected
+  .page--non-mobile & {
+    display: block;
+  }
+  // Align directly under first half of the featured-shows links
+  @include respond-to(tablet-landscape) {
+    .page--non-mobile & {
+      @include zen-grid-item(270, 1, $column-count: $watch-navigation-col-count);
+      @include gutter(10px, padding, right);
+    }
+  }
+}
+
+.watch-navigation__footer__link2 {
+  width:100%;
+  @include rem(height, 34px);
+  border-bottom: none 0px;
+}
+
+// Move to first position when msnbctv is hidden,
+// align with first half of featured-shows links
+.layout-watch-navigation__footer__item--msnbc2 {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(270, 1, $column-count: $watch-navigation-col-count);
+    @include gutter(10px, padding, right);
+    // Align directly under second half of the featured-shows
+    .page--non-mobile & {
+      @include zen-grid-item(270, 271, $column-count: $watch-navigation-col-count);
+      @include gutter(0, padding, right);
+    }
+  }
+}
+
+// Move to second position when msnbctv is hidden,
+// align with second half of featured-shows links
+.layout-watch-navigation__footer__item--watch {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(272, 541, $column-count: $watch-navigation-col-count);
+    @include gutter(10px, padding, left);
+    // Align end of watch and archive links under weekday
+    .page--non-mobile & {
+      @include zen-grid-item(272, 541, $column-count: $watch-navigation-col-count);
+      @include gutter(10px, padding, left);
+    }
+  }
+}
+// Align under weekday and weekend links when msnbctv is hidden
+.layout-watch-navigation__footer__item--archive {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(272, 541, $column-count: $watch-navigation-col-count);
+    @include gutter(10px, padding, left);
+    @include zen-clear(right);
+    // Align to end weekday links
+    .page--non-mobile & {
+      @include rem('margin-top',38px);
+      @include zen-grid-item(272, 541, $column-count: $watch-navigation-col-count);
+      @include zen-clear(right);
+    }
+  }
+}
+
+// Align to end of weekend links
+.layout-watch-navigation__footer__item--schedule {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(272, 812, $column-count: $watch-navigation-col-count);
+    @include gutter(10px, padding, left);
+    .page--non-mobile & {
+      @include zen-grid-item(272, 807, $column-count: $watch-navigation-col-count);
+      @include gutter(10px, padding, left);
+    }
+  }
+}
+
+// Align to end of weekend links
+.layout-watch-navigation__footer__item--shiftschedule {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(272, 812, $column-count: $watch-navigation-col-count);
+    @include gutter(10px, padding, left);
+    @include zen-clear(right);
+    .page--non-mobile & {
+      @include rem('margin-top', 38px);
+      @include zen-grid-item(272, 807, $column-count: $watch-navigation-col-count);
+      @include zen-clear(right);
+    }
+  }
+}
+
+.main-nav {
+  .watch-secondary-level-btn-group {
+       .watch-navigation__footer__link {
+          @include rem(height, 2.5rem);
+          @include rem(padding, 0px);
+        }
+   }
+}
+

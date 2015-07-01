@@ -1,34 +1,124 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>D3nyc</title>
-    <link rel="stylesheet" href="css/screen.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="/css/print.css" media="print" rel="stylesheet" type="text/css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--[if IE]>
-    <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-    <![endif]-->
+  <meta charset="UTF-8">
+  <title>petition:msnbc.com</title>
+  <link rel="stylesheet" href="css/screen.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="/css/print.css" media="print" rel="stylesheet" type="text/css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--[if IE]>
+  <link href="/css/ie.css" media="screen, projection" rel="stylesheet"
+        type="text/css"/>
+  <![endif]-->
 </head>
 <body class="home">
-<section class="container">
-    <header><h1><a href=""class="logo">logo</a></h1> </header>
-    <article class="content">
-        Tha main content. We like semantic HTML ordering.
-    </article>
-    <aside class="aside1">
-        An aside.
-    </aside>
-    <aside class="aside2">
-        Another aside.
-    </aside>
-    <footer class="footer1">
-        A footer.
-    </footer>
-    <footer class="footer2">
-        Another footer.
-    </footer>
+<section class="petition-container">
+  <div class="step0"></div>
+
+  <!--  xxxxxxxxx -->
+
+
+  <div class="step1">
+    <h3 class="title">Sign this petition</h3>
+
+    <p>Petitioning: U.S. Senate</p>
+    <h4>Removing the Confederate Flag From All Government Places</h4>
+
+    <p class="byShow">By The Rachel Maddow Show</p>
+    <section class="petitionProgressBar">
+      <span class="supporters">7,000 supporters</span>
+      <progress max="100" value="80">
+        <div class="progress-bar">
+          <span style="width: 80%;">Progress: 80%</span>
+        </div>
+      </progress>
+      <span class="goal">5,000 needed to reach 12,000</span>
+    </section>
+    <input class="name" type="text" placeholder="First Name"
+           aria-required="required" required="required"
+           pattern="[a-z][A-Z][' ]"/>
+    <input class="name" type="text" placeholder="Last Name"
+           aria-required="required" required="required"
+           pattern="[a-z][A-Z][' ]"/>
+    <input type="email" placeholder="Email Address" aria-required="required"
+           required="required"/>
+    <label for="addmsnbc"><input type="checkbox" id="addmsnbc" name="addmsnbc"/>
+      Display my signature on msnbc.com</label>
+    <a href="#step2" class="petition-cta btn" title="sign up">Sign up</a>
+    <small>Privacy & Term of Use</small>
+  </div>
+
+  <!--  xxxxxxxxx -->
+
+  <form class="step2" id="step2">
+    <h3 class="title">Sign this petition</h3>
+
+    <p>Petitioning: U.S. Senate</p>
+    <h4>Removing the Confederate Flag From All Government Places</h4>
+
+    <p class="byShow">By The Rachel Maddow Show</p>
+
+    <section class="petitionProgressBar">
+      <span class="numSupporters">52</span>
+      <progress max="100" value="80">
+        <div class="progress-bar">
+          <span style="width: 80%;">Progress: 80%</span>
+        </div>
+      </progress>
+      <span class="goal">5,000 needed to reach 12,000</span>
+    </section>
+    <span class="supporters">supporters of 10,000 goal</span>
+    5,000 needed to reach 12,000
+    <form name="signer">
+      <input class="name" type="text" placeholder="First Name"
+             aria-required="required" required="required"
+             pattern="[a-z][A-Z][' ]"/>
+
+      <input class="name" type="text" placeholder="Last Name"
+             aria-required="required" required="required"
+             pattern="[a-z][A-Z][' ]"/>
+      <input type="email" placeholder="Email Address" aria-required="required"
+             required="required"/>
+      <label for="addmsnbc"><input type="checkbox" id="addmsnbc"
+                                   name="addmsnbc"/> Display my signature on
+        msnbc.com</label>
+      <a href="#step3" class="petition-cta btn" title="sign up">Sign up</a>
+      <small>Privacy & Term of Use</small>
+    </form>
+    </div>
+
+    <!--  xxxxxxxxx -->
+
+
+    <div class="step3" id="step3">
+      <img src="" alt=""/ >
+
+      <p>Petitioning: U.S. Senate</p>
+      <h4>Removing the Confederate Flag From All Government Places</h4>
+
+      <p class="byShow">By The Rachel Maddow Show</p>
+      <section class="petitionProgressBar">
+        <span class="supporters">7,000 supporters</span>
+        <progress max="100" value="80">
+          <div class="progress-bar">
+            <span style="width: 80%;">Progress: 80%</span>
+          </div>
+        </progress>
+        <span class="goal">5,000 needed to reach 12,000</span>
+      </section>
+      <a href="#" class="petition-cta btn" title="Sign the petition">Sign the
+        petition</a>
+    </div>
+
+    <!--  xxxxxxxxx -->
+
+
+    <div class="step4" id="step4"></div>
+
+    <!--  xxxxxxxxx -->
+
+
 </section>
 <script src="js/app.js"></script>
 </body>

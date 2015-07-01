@@ -1,0 +1,196 @@
+// Normalize
+// ---------
+// Normalizes miscellaneous HTML elements so that they display consistently
+// across browsers.
+
+// HTML5 display definitions.
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+dialog,
+summary {
+  display: block;
+}
+
+// Links
+//
+// Markup:
+// <a href="#">A link element</a>
+//
+// Styleguide 4.2
+
+a {
+  #{$link} {
+    color: $primary;
+    text-decoration: none;
+  }
+  #{$focus} {
+    color: $primary;
+    outline: 0;
+  }
+  // Addresses outline displayed oddly in Chrome.
+  &:focus {
+    outline: thin dotted;
+  }
+}
+
+// Text
+//
+// Elements that have text-level semantics.
+//
+// Markup:
+// This text includes an <abbr title="An abbreviation">abbrev.</abbr> and
+// <b>bold text</b> and <strong>bold text</strong> and <dfn>defining term</dfn>
+// text and <mark>marked text</mark> and <code>code text</code> and
+// <kbd>keyboard text</kbd> and <samp>sample text</samp> and <small>small
+// text</small> and subscripts<sub>1</sub> and superscripts<sup>2</sup> and
+// <time>date/times</time> and <q>quoted text</q> and <cite>citation text</cite>
+// and is a major run-on sentence (sorry about that) and ends in a hard rule:
+// <hr>
+// <blockquote>A block of quoted text.</blockquote>
+// <pre>A block of preformatted text.</pre>
+//
+// Styleguide 4.3
+
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+  border: 1px solid gray;
+  height: 1px;
+}
+
+// Address styling not present in IE 8/9.
+
+mark {
+  background: #ff0;
+  color: $darkest;
+}
+
+// Correct font family set oddly in Safari 5 and Chrome.
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+// Improves readability and allows line-wrapping
+pre {
+  overflow:auto;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+// Address inconsistent and variable font size in all browsers.
+
+small {
+  font-size: 80%;
+}
+
+// Prevent `sub` and `sup` affecting `line-height` in all browsers.
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+%time, time {
+  @include adjust-font-size-to($xsmallpx);
+  @include rem(padding-left, 1px);
+  letter-spacing: 1px;
+}
+
+// Ensures content is hidden from all presentations, including screenreaders.
+
+[hidden] {
+  display: none;
+}
+
+// Corrects list images handled incorrectly in IE7.
+nav {
+  ul,
+  ol {
+    list-style: none;
+    list-style-image: none;
+  }
+}
+
+// Quotes
+// ------
+// Sets consistent quote types.
+
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote,
+%blockquote,
+cite,
+%cite {
+  font-style: italic;
+}
+
+// Tables
+// ------
+// Remove most spacing between table cells.
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

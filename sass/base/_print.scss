@@ -1,0 +1,222 @@
+/* base/_print.scss */
+
+/* Print styles */
+
+// Inlined to avoid extra HTTP connection.
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    filter: none !important;
+    // Black prints faster: sanbeiji.com/archives/953
+    @include text-shadow(none);
+    -ms-filter: none !important;
+  }
+
+  @page {
+    @include rem(margin, 40px 20px 20px);
+  }
+
+  a {
+    &:link,
+    &:visited {
+      text-decoration: underline;
+    }
+  }
+
+  // Do not show javascript and internal links.
+  a {
+    &[href^="javascript:"]:after,
+    &[href^="#"]:after {
+      content: "";
+    }
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  // Printing Tables: css-discuss.incutio.com/wiki/Printing_Tables
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  // Add the site logo to all pages
+  .page:before {
+    content: image-url('site-header/msnbc-logo-small.png');
+    width: 100%;
+    display: block;
+    height: 30px;
+    padding-left: 35px;
+  }
+
+  // Since we hide the rail make content full width
+  .panel__main__content,
+  .panel--article--generic .panel__hero__first,
+  .panel--article--generic .panel__main,
+  .panel--article--portrait .panel__hero__first,
+  .panel--article--portrait .panel__main {
+    width: 100% !important;
+    overflow: visible;
+  }
+
+  // Hide all non essential elements
+  .pane-native-ad-whats-this,
+  .site-header-inner,
+  .panel--article--generic .panel__hero__second,
+  .dfp-tag-wrapper,
+  .teaser__social,
+  .pane-native-ad-whats-this.mobile-only,
+  .pane-native-ad-sponsor.mobile-only,
+  .panel__rail,
+  .teaser__social,
+  .social-links-top,
+  .social-links-bottom,
+  .off-canvas,
+  .pane-flippy-flippy-pager,
+  .pane-msnbc-newsvine-subscribe,
+  .pane-msnbc-newsvine-best-of-msnbc,
+  .pane-more-like-this-more-like-this,
+  .pane-taboola-widget,
+  .footer,
+  #TPVideoPlayerRestPlayButton,
+  iframe[src*="youtube.com"],
+  .teaser__image--slideshow--view-link,
+  .teaser__image.embed a:after {
+    display: none !important;
+  }
+
+
+  .pane-explore-issues-topics{
+    @include trailer(1);
+  }
+
+  .pane-node-field-issues {
+    max-width: 100% !important;
+  }
+
+  .field-name-field-publish-date {
+    margin-bottom: 0;
+  }
+
+  .theplatform-video__show-date,
+  .theplatform-video__title {
+    margin-left: 8px;
+  }
+
+  .no-mobile {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }
+  .media-meta {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .pane-native-ad-image-and-caption {
+    float: right;
+    padding-left: 20px;
+  }
+
+  .panel--article--portrait {
+    .panel__main__header-1 {
+      width: 49%;
+      float: left;
+    }
+    .panel__main__header-2 {
+      width: 49%;
+      float: right;
+      padding-left: 20px !important;
+      img {
+        max-width: 100%;
+      }
+    }
+    .panel__main__content {
+      clear: left;
+    }
+    .authors-names {
+      clear: none !important;
+      border-bottom: none !important;
+    }
+  }
+
+  // Restrict left/right embed widths
+  .embed-left, .embed-right {
+    width: 380px !important;
+    &.is-expanded {
+      width: 100% !important;
+    }
+  }
+
+  // Force embeds to float so content wraps
+  .embed-left {
+    float: left !important;
+    margin-right: 30px !important;
+  }
+
+  .embed-right {
+    float: right !important;
+    margin-left: 30px !important;
+  }
+
+  .has-off-canvas.is-off-canvas {
+    left: 0;
+    .panel__hero__first,
+    .c-group-avatar,
+    .c-group-activity-label,
+    .panel__main,
+    .c-conv-starter,
+    .c-comment-id,
+    .c-comment-info,
+    .j-comment-new {
+      display: none;
+    }
+    .off-canvas {
+      display: block !important;
+      right: 0;
+      width: 100%;
+      left: 480px;
+    }
+  }
+
+  #discussions .c-widget-troff {
+    .c-summary .c-comment-text {
+      margin: 20px 0 0 0;
+    }
+    .c-group-discussion.c-summary {
+      padding-top: 40px;
+    }
+    #_public_.c-group-discussion.c-summary {
+      padding-top: 30px;
+    }
+    .c-comment.c-comment{
+      border: none;
+    }
+    .c-group-meta {
+      .c-collapse-tool,
+      .c-group-activity,
+      .c-group-join {
+        display: none;
+      }
+    }
+  }
+}

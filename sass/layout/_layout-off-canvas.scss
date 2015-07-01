@@ -1,0 +1,39 @@
+.has-off-canvas {
+  position: relative;
+  @include transition-property(translate);
+  @include transition-duration(0.5s);
+
+  &.is-off-canvas{
+    left: -100%;
+    @include respond-to(tablet) {
+      left: -$off-canvas-width--tablet;
+    }
+    @include respond-to(tablet-landscape) {
+      left: -$off-canvas-width;
+    }
+  }
+}
+
+.js .off-canvas {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  @include gutter();
+  @include respond-to(tablet) {
+    width: $off-canvas-width--tablet;
+    right: -$off-canvas-width--tablet;
+  }
+  @include respond-to(tablet-landscape) {
+    @include gutter($gutter-width: 0, $gutter-side: 'left');
+    width: $off-canvas-width;
+    right: -$off-canvas-width;
+  }
+
+  .discussions {
+    // Full-width on mobile.
+    @include respond-to(mobile-max) {
+      @include gutter($spacing-type: margin, $offset: pull);
+    }
+  }
+}

@@ -1,0 +1,63 @@
+// Smaller title and wrapped padding.
+// Pane class, typically in the right rail.
+%pane-micro-title,
+.pane-micro-title {
+  .pane-title {
+    @include adjust-font-size-to(14px);
+    color: $mid;
+  }
+}
+
+.panel-1col {
+  @include gutter(full, padding);
+  .front &, .homepage & {
+    @include gutter(0, padding);
+  }
+}
+
+.panel-flexible {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+   @include gutter(full, padding);
+  }
+}
+
+.panel--twocolwide {
+  @include box-sizing(border-box);
+  @include respond-to(tablet) {
+    @include gutter(full, padding);
+  }
+  .panel__row--ii {
+    @include trailer(1);
+  }
+  .panel__column--ii {
+    @include respond-to(tablet) {
+      @include gutter(full, padding, left);
+    }
+  }
+  .panel__row__multi--i {
+    overflow: visible;
+    @include respond-to(mobile-max) {
+      @include gutter(full, padding);
+    }
+    @include respond-to(tablet-landscape-only) {
+      @include gutter(full, padding, right);
+    }
+  }
+  .panel__row__multi--ii {
+    @include respond-to(mobile-max) {
+      @include gutter(full, padding);
+    }
+    @include respond-to(tablet) {
+      @include gutter(full, padding, left);
+    }
+    @include respond-to(tablet-landscape-only) {
+      @include gutter(none, padding, left);
+    }
+  }
+  .panel__row--iii {
+    @include respond-to(mobile-max) {
+      @include gutter(full-padding);
+    }
+  }
+}

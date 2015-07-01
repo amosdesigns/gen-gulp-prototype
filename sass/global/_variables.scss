@@ -1,0 +1,383 @@
+// Variables
+//
+// Useful Sass variables. Additional Sass variables can be found in
+// `scss/global/_variables.scss`.
+//
+// Styleguide 3.0
+
+
+// Box Model
+$box-model: 'border-box';
+
+// Typographic
+$base-font-size   : 14px;
+$base-line-height : 24px;
+
+// Font sizes
+//
+// Variables to use with `font-size`.
+//
+// Example:
+// <dl style="line-height: 1.2">
+// <dt><code>$base-font-size</code></dt>
+//   <dd style="font-size: 14px">Lorem ipsum</dd>
+// <dt><code>$xxsmallpx</code></dt>
+//   <dd style="font-size: 9px ">Lorem ipsum</dd>
+// <dt><code>$xsmallpx</code></dt>
+//   <dd style="font-size: 10px">Lorem ipsum</dd>
+// <dt><code>$smallpx</code></dt>
+//   <dd style="font-size: 12px">Lorem ipsum</dd>
+// <dt><code>$norm-smallpx</code></dt>
+//   <dd style="font-size: 13px">Lorem ipsum</dd>
+// <dt><code>$normpx</code></dt>
+//   <dd style="font-size: 14px">Lorem ipsum</dd>
+// <dt><code>$xnormpx</code></dt>
+//   <dd style="font-size: 16px">Lorem ipsum</dd>
+// <dt><code>$medpx</code></dt>
+//   <dd style="font-size: 18px">Lorem ipsum</dd>
+// <dt><code>$largepx</code></dt>
+//   <dd style="font-size: 20px">Lorem ipsum</dd>
+// <dt><code>$xlargepx</code></dt>
+//   <dd style="font-size: 21px">Lorem ipsum</dd>
+// <dt><code>$xxlargepx</code></dt>
+//   <dd style="font-size: 24px">Lorem ipsum</dd>
+// <dt><code>$xxxlargepx</code></dt>
+//   <dd style="font-size: 28px">Lorem ipsum</dd>
+// <dt><code>$xxxxlargepx</code></dt>
+//   <dd style="font-size: 35px">Lorem ipsum</dd>
+// <dt><code>$xxxxxlargepx</code></dt>
+//   <dd style="font-size: 42px">Lorem ipsum</dd>
+// <dt><code>$xxxxxxlargepx</code></dt>
+//   <dd style="font-size: 50px">Lorem ipsum</dd>
+// </dl>
+//
+// Markup:
+// $base-font-size  : 14px;
+// $xxsmallpx       : 9px; // Use with $sans-serif for best rendering
+// $xsmallpx        : 10px;
+// $smallpx         : 12px;
+// $norm-smallpx    : 13px;
+// $normpx          : $base-font-size;
+// $xnormpx         : 16px;
+// $medpx           : 18px;
+// $largepx         : 20px;
+// $xlargepx        : 21px;
+// $xxlargepx       : 24px;
+// $xxxlargepx      : 28px;
+// $xxxxlargepx     : 35px;
+// $xxxxxlargepx    : 42px;
+// $xxxxxxlargepx   : 50px;
+//
+// Styleguide 3.3
+$xxsmallpx       : 9px; // Use with $sans-serif for best rendering
+$xsmallpx        : 10px;
+$smallpx         : 12px;
+$norm-smallpx    : 13px;
+$normpx          : $base-font-size;
+$xnormpx         : 16px;
+$medpx           : 18px;
+$largepx         : 20px;
+$xlargepx        : 21px;
+$xxlargepx       : 24px;
+$xxxlargepx      : 28px;
+$xxxxlargepx     : 35px;
+$xxxxxlargepx    : 42px;
+$xxxxxxlargepx   : 50px;
+$xxxxxxxlargepx  : 86px;
+
+// Other typography
+//
+// Additional typography-related variables, like line height and indentation.
+//
+// Example:
+// <span></span>
+//
+// Markup:
+// $base-line-height : 24px;
+// $type-indent      : $xlargepx;
+//
+// Styleguide 3.4
+$type-indent : $xlargepx;
+
+$rhythm-unit          : rem;
+$rem-with-px-fallback : false;
+
+$show-baseline-grid-backgrounds  : false;
+$round-to-nearest-half-line      : true;
+$grid-background-baseline-height : $base-line-height;
+$grid-background-baseline-color  : #efefef;
+
+// Font faces
+//
+// Variables to use with `font-face`.
+//
+// Example:
+// <dl>
+// <dt><code>$sans-stack</code></dt>
+//   <dd style='font-family: "NeueHaasGroteskTextPro-55Roman", "Helvetica Neue", Helvetica, Arial, sans-serif;'>The quick brown fox jumps over the lazy dog.</dd>
+// <dt><code>$sans-med-stack</code></dt>
+//   <dd style='font-family: "NeueHaasGroteskTextPro-75Medium";'>The quick brown fox jumps over the lazy dog.</dd>
+// <dt><code>$sans-thin-stack</code></dt>
+//   <dd style='font-family: "NeueHaasGroteskTextPro-25Thin";'>The quick brown fox jumps over the lazy dog.</dd>
+// <dt><code>$sans-light-stack</code></dt>
+//   <dd style='font-family: "NeueHaasGroteskTextPro-45Light";'>The quick brown fox jumps over the lazy dog.</dd>
+// <dt><code>$serif-stack</code></dt>
+//   <dd style='font-family: Baskerville, Palatino, Cambria, Georgia, serif;'>The quick brown fox jumps over the lazy dog.</dd>
+// <dt><code>$mono-stack</code></dt>
+//   <dd style='font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;'>The quick brown fox jumps over the lazy dog.</dd>
+// </dl>
+//
+// Markup:
+// $sans-stack       : "NeueHaasGroteskTextPro-55Roman", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $sans-thin-stack  : "NeueHaasGroteskTextPro-25Thin";
+// $sans-light-stack : "NeueHaasGroteskTextPro-45Light";
+// $digital-font     : "Rokkitt", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $serif-stack      : Baskerville, Palatino, Cambria, Georgia, serif;
+// $mono-stack       : Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+//
+// Styleguide 3.2
+$sans-stack       : "NeueHaasGrotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$sans-thin-stack  : "NeueHaasGroteskThin";
+$sans-light-stack : "NeueHaasGroteskLight";
+$digital-font     : "Rokkitt", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif-stack      : Baskerville, Palatino, Cambria, Georgia, serif;
+$mono-stack       : Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+
+// Layout variables
+//
+// Variables directly related to partials in the layout directory. Layouts are built
+// using [Zen Grids](http://zengrids.com/) and [Breakpoint](http://breakpoint-sass.com).
+//
+// Example:
+// <span></span>
+//
+// Markup:
+// $off-canvas-width: 66.6666%;
+// $off-canvas-width--tablet: 50%;
+// // Zen-Grids
+// $zen-box-sizing: $box-model;
+// $zen-column-count: 12;
+// $zen-gutter-width: 30px;
+// $zen-auto-include-item-base: false;
+// // Breakpoint
+// $breakpoint-to-ems: true;
+// $breakpoints: 'mobile' 320px,
+//               'mobile-mid' 400px,
+//               'mobile-max' (max-width 767px),
+//               'tablet' 768px,
+//               'tablet-max' (max-width 1023px),
+//               'tablet-only' 768px 1023px,
+//               'tablet-landscape' 1024px,
+//               'tablet-landscape-max' (max-width 1229px),
+//               'tablet-landscape-only' 1024px 1229px,
+//               'desktop' 1230px;
+// $breakpoint-no-query-fallbacks: false;
+//
+// Styleguide 3.5
+$off-canvas-width: 66.6666%;
+$off-canvas-width--tablet: 50%;
+
+// Zen-Grids
+// ---------
+// Provides the base configuration for Zen-Grids
+// http://zengrids.com/
+$zen-box-sizing: $box-model;
+$zen-column-count: 12;
+$zen-gutter-width: 30px; // from prototype
+$zen-auto-include-item-base: false;
+// Development only
+$zen-grid-color: rgba(#ffdede, 0.25);
+$zen-grid-numbers: top;
+
+// Breakpoint
+// ----------
+$breakpoint-to-ems: true;
+$breakpoints: 'mobile' 320px,
+              'mobile-mid' 400px,
+              'mobile-max' (max-width 767px),
+              'tablet' 768px,
+              'tablet-max' (max-width 1023px),
+              'tablet-only' 768px 1023px,
+              'tablet-landscape' 1024px,
+              'tablet-landscape-max' (max-width 1229px),
+              'tablet-landscape-only' 1024px 1229px,
+              'desktop' 1230px;
+$breakpoint-no-query-fallbacks: false;
+
+
+// General settings
+// ----------------
+$legacy-support-for-ie6 : false;
+$legacy-support-for-ie7 : false;
+$legacy-support-for-ie8 : false;
+
+// Vendor Prefixes
+// ---------------
+$experimental-support-for-mozilla      : true;
+$experimental-support-for-webkit       : true;
+$support-for-original-webkit-gradients : true;
+$experimental-support-for-opera        : true;
+$experimental-support-for-microsoft    : true;
+$experimental-support-for-khtml        : true;
+
+// Colors
+//
+// Example:
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #0066CC"></span>
+//   <code class="kss-color__variable">$primary</code>
+//   <span class="kss-color__description">Action blue</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #59a7F4"></span>
+//   <code class="kss-color__variable">$primary-alt</code>
+//   <span class="kss-color__description">Secondary blue</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #0ea04d"></span>
+//   <code class="kss-color__variable">$secondary</code>
+//   <span class="kss-color__description">VIP green</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #3ca337"></span>
+//   <code class="kss-color__variable">$highlight</code>
+//   <span class="kss-color__description">Ad green</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #333"></span>
+//   <code class="kss-color__variable">$darkest</code>
+//   <span class="kss-color__description">Rail grey</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #666"></span>
+//   <code class="kss-color__variable">$dark</code>
+//   <span class="kss-color__description">Text grey</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #777"></span>
+//   <code class="kss-color__variable">$mid-dark</code>
+//   <span class="kss-color__description">Social links</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #999"></span>
+//   <code class="kss-color__variable">$mid</code>
+//   <span class="kss-color__description">Backdrop grey</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #ccc"></span>
+//   <code class="kss-color__variable">$light</code>
+//   <span class="kss-color__description">Hairlines</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #e8e8e8"></span>
+//   <code class="kss-color__variable">$lighter</code>
+//   <span class="kss-color__description">Livefyre</span>
+// </div>
+// <div class="kss-color">
+//   <span class="kss-color__swatch" style="background-color: #f0f0f0"></span>
+//   <code class="kss-color__variable">$lightest</code>
+//   <span class="kss-color__description"></span>
+// </div>
+//
+// Markup:
+// $darkest     : #333; // rail grey
+// $dark        : #666; // text grey
+// $mid-dark    : #777; // social links
+// $mid         : #999; // backdrop grey
+// $light       : #ccc; // hairlines
+// $lighter     : #e8e8e8; // livefyre
+// $lightest    : #f0f0f0;
+// $blue        : #0066CC; // action blue
+// $altblue     : #59a7F4; // secondary blue
+// $green       : #0ea04d; // VIP green
+// $altgreen    : #3ca337; // Ad green
+// // Default Colors
+// $primary     : $blue;
+// $primary-alt : $altblue;
+// $secondary   : $green;
+// $highlight   : $altgreen;
+//
+// Styleguide 3.1
+$darkest     : #333; // rail grey
+$dark        : #666; // text grey ?
+$mid-dark    : #777; // social links
+$mid         : #999; // backdrop grey
+$light       : #ccc; // hairlines
+$lighter     : #e8e8e8; // livefyre
+$lightest    : #f0f0f0;
+$blue        : #0066CC; // action blue
+$altblue     : #59a7F4; // secondary blue
+$green       : #0ea04d; // VIP green
+$altgreen    : #3ca337; // Ad green
+$darkred     : #ce1140; // live action red
+
+// Default Colors
+$primary       : $blue;
+$primary-alt   : $altblue;
+$secondary     : $green;
+$highlight     : $altgreen;
+$highlight-alt : $darkred;
+
+// Links
+$link  : '&:link, &:visited';
+$focus : '&:focus, &:hover, &:active';
+
+// Define sprites used across the site
+// -----------------------------------
+
+// Assign paths for the arrow icons
+// $arrows                  : sprite-map("arrows/*.png", $spacing: 40px); // import normal sprites
+// $arrows2x                : sprite-map("arrows2x/*.png", $spacing: 40px); // import 2x sprites
+
+// $lg-arrows               : sprite-map("lg-arrows/*.png", $spacing: 40px); // import normal sprites
+// $lg-arrows2x             : sprite-map("lg-arrows2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for the featured slider pager icons
+// $featured-slider-pager   : sprite-map("featured-slider-pager/*.png", $spacing: 40px); // import normal sprites
+// $featured-slider-pager2x : sprite-map("featured-slider-pager2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for the featured slider play icons
+// $media                   : sprite-map("media/*.png", $spacing: 40px); // import normal sprites
+// $media2x                 : sprite-map("media2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for the featured slider play icons
+// $media-small             : sprite-map("media-small/*.png", $spacing: 40px); // import normal sprites
+// $media-small2x           : sprite-map("media-small2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for the nav icons
+// $toggle-nav              : sprite-map("toggle-nav/*.png", $spacing: 40px); // import normal sprites
+// $toggle-nav2x            : sprite-map("toggle-nav2x/*.png", $spacing: 45px); // import 2x sprites
+
+// Assign paths for the teaser icons
+// $teaser                  : sprite-map("teaser/*.png", $spacing: 45px); // import normal sprites
+// $teaser2x                : sprite-map("teaser2x/*.png", $spacing: 45px); // import 2x sprites
+
+// Assign paths for the header social icons
+// $social-a                : sprite-map("social-a/*.png", $spacing: 40px); // import normal sprites
+// $social-a2x              : sprite-map("social-a2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for the footer social icons
+// $social-b                : sprite-map("social-b/*.png", $spacing: 40px); // import normal sprites
+// $social-b2x              : sprite-map("social-b2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for Show Landing social icons
+// $social-c                : sprite-map("social-c/*.png", $spacing: 40px); // import normal sprites
+// $social-c2x              : sprite-map("social-c2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Assign paths for Show Landing social icons
+// $social-d                : sprite-map("social-d/*.png", $spacing: 40px); // import normal sprites
+// $social-d2x              : sprite-map("social-d2x/*.png", $spacing: 40px); // import 2x sprites
+
+// Homepage region heights
+// Variables
+$hp-admin-offset         : 29px; // Header offset to be pushed down.
+$hp-header-offset        : 115px; // Header offset to be pushed down.
+$hp-dfp-offset           : 0; // Variable DFP ad offset handled by javascript.
+$hp-secondary-nav-offset : 36px; // The height of the secondary nav used for latest topics. ad offset handled by javascript.
+$hp-breaking-news-offset : 30px; // The height of the breaking news bar.
+
+// Operation Watch variables
+// -------------------------
+$channel-tab-height-mobile     : 55px;
+$channel-tab-height-non-mobile : 44px;
+$collapsible-header-height     : 40px;

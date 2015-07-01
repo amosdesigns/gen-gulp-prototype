@@ -1,0 +1,48 @@
+/**
+ * @file
+ * Layout rules for the opwatch panels layout.
+ *
+ * A majority of layout rules for this panels layout can be found in the plugin
+ * directory alongside the template. Gutters (padding) must be applied within
+ * this theme to ensure access to and use of this theme's gutter width variable.
+ *
+ * If panels layouts are ever moved into the theme, this file is to hold all
+ * layout rules for the opwatch layout. This file should never contain
+ * presentation/style rules.
+ */
+
+.layout-opwatch {
+  @include trailer(1);
+  @include clearfix;
+}
+
+.layout-opwatch__top,
+.layout-opwatch__bottom {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+    @include gutter(0, padding);
+  }
+}
+
+.layout-opwatch__bottom,
+.layout-opwatch__content {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+    @include gutter(0, padding, left);
+    @include gutter(full, margin, right);
+  }
+  @include respond-to(tablet) {
+    @include gutter(full, padding, left);
+  }
+}
+
+.layout-opwatch__rail {
+  @include gutter(half, padding);
+  @include respond-to(tablet) {
+    @include gutter(half, padding, left);
+    @include gutter(0, padding);
+  }
+  .layout-pliable--full-width & {
+    @include gutter(0, padding);
+  }
+}

@@ -1,0 +1,16 @@
+// Base
+//
+// These are the base styles applied to HTML elements.
+//
+// Styleguide 4.0
+
+
+// Local files
+// -----------
+@import "fonts";      // Web Fonts.
+@import "root";       // *, HTML, BODY elements.
+@import "normalize";  // Miscellaneous HTML elements.
+@import "headings";   // H1-H6 elements.
+@import "media";      // IMG, AUDIO, VIDEO, SVG, CANVAS and FIGURE elements.
+@import "forms";
+@import "print";      // Print styles.

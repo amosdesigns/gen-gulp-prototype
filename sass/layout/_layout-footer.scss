@@ -1,0 +1,119 @@
+// Footer layout
+//
+// Markup:
+// <footer class="footer">
+//   <div class="footer-inner">
+//     <div class="m-left">
+//       <nav class="fl-sitewide">
+//         <ul>
+//           <li><a href="#">[sitewide column]</a></li>
+//         </ul>
+//       </nav>
+//       <nav class="fl-msnbc">
+//         <ul>
+//           <li><a href="#">[msnbc column]</a></li>
+//         </ul>
+//       </nav>
+//     </div>
+//     <div class="m-right">
+//       <nav class="fl-nbcnews">
+//         <ul>
+//           <li><a href="#">[nbcnews column]</a></li>
+//         </ul>
+//       </nav>
+//       <nav class="fl-microsoft-links">
+//         <ul>
+//         <li><a href="#">[microsoft column]</a></li>
+//         </ul>
+//       </nav>
+//     </div>
+//     <div class="f-copyright">[copyright]</div>
+//   </div>
+// </footer>
+//
+// Styleguide 5.2
+
+
+.footer {
+  @include zen-grid-container;
+
+  .footer-inner {
+    margin: 2em;
+    @include respond-to(tablet) {
+      margin: 4em;
+    }
+  }
+}
+
+.social-icons-b {
+  @include respond-to(desktop) {
+    display: none;
+  }
+}
+
+@include respond-to(mobile-max) {
+
+  .m-left, .m-right {
+    @include zen-grid-item-base();
+  }
+
+  .m-left {
+    @include zen-grid-item(6, 1, left);
+  }
+  .m-right {
+    @include zen-grid-item(6, 1, right);
+  }
+}
+
+@include respond-to(tablet) {
+
+  .fl-sitewide,
+  .fl-msnbc,
+  .fl-nbcnews,
+  .fl-microsoft-links {
+    @include zen-grid-item-base();
+  }
+
+  .fl-sitewide {
+    @include zen-grid-item(3, 1);
+  }
+
+  .fl-msnbc {
+    @include zen-grid-item(3, 4);
+  }
+
+  .fl-nbcnews {
+    @include zen-grid-item(3, 7);
+  }
+
+  .fl-microsoft-links {
+    @include zen-grid-item(3, 10);
+  }
+}
+
+.fl-sitewide,
+.fl-msnbc,
+.fl-nbcnews,
+.fl-microsoft-links {
+
+  li {
+    margin-bottom: 1em;
+  }
+}
+
+.fl-sitewide ul {
+  width: 9em;
+}
+
+.f-copyright {
+  @include zen-clear;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: .75em;
+  @include respond-to(tablet) {
+    width: 25%;
+    padding: 0 15px;
+    float: right;
+    text-align: left;
+  }
+}

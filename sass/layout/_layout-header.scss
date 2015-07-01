@@ -1,0 +1,124 @@
+// Separating layout from content
+
+// Restrict header and menu from going full width beyond 1170px
+.site-header-inner,
+.secondary-nav-inner {
+  @include respond-to(tablet-landscape) {
+    @include gutter(full, margin);
+  }
+  @include respond-to(desktop) {
+    position: relative;
+    width: 1170px; // 30px left/right margins
+    margin: 0 auto;
+  }
+}
+
+#site-name,
+#newsvine-login,
+.h-social-icons,
+#mobile-controls,
+.main-nav,
+#site-search {
+  @include zen-grid-item-base;
+  padding-left: 0;
+  padding-right: 0;
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item-base;
+  }
+  // iOS fixes
+  input {
+    -webkit-appearance: none;
+    @include border-radius(0);
+  }
+}
+
+.user-auth {
+  @include respond-to(tablet-landscape) {
+    float: right;
+  }
+}
+
+#site-name {
+  @include zen-grid-item(47,1, $column-count: 100);
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(5,1);
+  }
+  @include respond-to(desktop) {
+    @include zen-grid-item(3,1);
+  }
+}
+
+#mobile-controls {
+  @include zen-grid-item(53,47, $column-count: 100);
+  text-align: right;
+}
+
+.nv-login {
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(6,4);
+  }
+  @include respond-to(desktop) {
+    @include zen-grid-item(4,5);
+  }
+}
+
+.social-icons-a {
+  display: none;
+  @include respond-to(desktop) {
+    @include inline-block;
+    @include zen-grid-item(4,9);
+  }
+}
+
+.main-nav {
+  @include zen-clear;
+  @include zen-nested-container;
+
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(12,1);
+  }
+  @include respond-to(desktop) {
+    @include zen-grid-item(8,1);
+  }
+}
+
+#site-search {
+  padding-right: 0;
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(3,1, right);
+    @include leader(-1.65);
+    @include rem('padding-left', 15px);
+  }
+  @include respond-to(desktop) {
+    @include zen-grid-item(4,9);
+    @include leader(0);
+    @include rem('padding-left', 30px);
+  }
+}
+
+.main-nav__link {
+  @include respond-to(tablet-landscape) {
+    &.first {
+      padding-left: 0;
+      margin-left: 0;
+    }
+    &.last {
+      padding-right: 0;
+      margin-right: 0;
+    }
+    float: left;
+    @include rem('padding-left', 15px);
+    @include rem('padding-right', 15px);
+    width: 25%;
+    word-wrap: break-word;
+  }
+}
+
+#account-bar {
+  padding-right: 0;
+  @include respond-to(tablet-landscape) {
+    @include zen-grid-item(4,9);
+    @include leader(2.5);
+    @include rem('padding-left', 30px);
+  }
+}

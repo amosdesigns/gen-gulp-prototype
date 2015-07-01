@@ -1,0 +1,701 @@
+// Remove Bullets
+// Remove list item styles
+//
+// Ex:
+//   .selector {
+//     @include remove-bullets;
+//   }
+//
+@mixin remove-bullets {
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    list-style-type: none;
+    line-height: inherit;
+    padding: 0;
+  }
+
+}
+
+// Element Invisible
+// Hide an element from view while staying accessible.
+//
+// Ex:
+//   .selector {
+//     @include element-invisible;
+//   }
+//
+@mixin element-invisible {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+    clip: rect(1px 1px 1px 1px); // IE6 and IE7 use the wrong syntax.
+  }
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// Element Invisible Off
+// Unhide an element that was previously hidden by 'Element Invisible'
+//
+// Ex:
+//   .selector--active {
+//     @include element-invisible-off;
+//   }
+@mixin element-invisible-off {
+  position: static !important;
+  clip: auto;
+  height: auto;
+  width: auto;
+  overflow: auto;
+}
+
+// Breakpoint Grid Breakdown
+// Displays a grid of items with a dynamic column count across breakpoints.
+// For use with Zen Grids and a breakpoint-oriented mixin.
+// @author Gus Childs http://drupal.org/user/1468898
+//
+// Params:
+//   $column-counts - A list of how many columns should exist on the
+//                    respective breakpoint in $breakpoints.
+//   $breakpoints   - A list of breakpoints to be used from the 'breakpoint'
+//                    mixin. Corresponds with the $column-counts list. Defaults
+//                    to those used most often on this specific project.
+//   $selector      - The selector to be used for each individual grid item.
+//
+// Our breakpoint mixin uses a mobile first approach so the $column-counts and
+// $breakpoints must be listed in the same order. Also, the :nth-child()
+// pseudo-selector requires Selectivizr to work properly in IE lte 8.
+//
+// Ex:
+//   .g--1-2-4 {
+//     @include breakpoint-grid-breakdown(4 2 1);
+//   }
+//   .g--1-2 {
+//     @include breakpoint-grid-breakdown(1 2, 'mobile' 'tablet', 'li.list-item');
+//   }
+@mixin breakpoint-grid-breakdown($column-counts, $breakpoints: 'mobile' 'mobile-mid' 'tablet-landscape', $selector: '.views-row') {
+  #{$selector} {
+    @each $breakpoint in $breakpoints {
+      // Determine which $column-counts value corresponds to this breakpoint.
+      $key: index($breakpoints, $breakpoint);
+      $column-count: nth($column-counts, $key);
+
+      @if type-of($breakpoint) == 'number' {
+        // See 'breakpoint' mixins in global/_breakpoints.scss and elsewhere.
+        @include breakpoint($breakpoint) {
+          @for $i from 1 through $column-count {
+            $remainder: $i % $column-count;
+            // Ex: If there were four columns and this were the second item in
+            // any given row, this will end up being &:nth-child(4n+2).
+            &:nth-child(#{$column-count}n+#{$remainder}) {
+              // How many columns of the larger grid on the page should this item
+              // in our grid fill and where on that grid should it be positioned?
+              $page-grid-column-span: $zen-column-count / $column-count;
+              $page-grid-column-position: 1 + (($i - 1) * $page-grid-column-span);
+              @include zen-grid-item($page-grid-column-span, $page-grid-column-position);
+              @include trailer(1);
+              // Clear the first item in each row to clear the row.
+              @if $remainder == 1 or $column-count == 1 {
+                clear: both;
+              }
+              @else {
+                clear: none;
+              }
+            }
+          }
+        }
+      }
+      @else {
+        // Do the same thing as above when the value of $breakpoint is not a
+        // number, except switch to the respond-to() mixin.
+        @include respond-to($breakpoint) {
+          @for $i from 1 through $column-count {
+            $remainder: $i % $column-count;
+            &:nth-child(#{$column-count}n+#{$remainder}) {
+              $page-grid-column-span: $zen-column-count / $column-count;
+              $page-grid-column-position: 1 + (($i - 1) * $page-grid-column-span);
+              @include zen-grid-item($page-grid-column-span, $page-grid-column-position);
+              @include trailer(1);
+              @if $remainder == 1 or $column-count == 1 {
+                clear: both;
+              } @else {
+                clear: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Disables Flexslider controls at a given breakpoint
+//
+// Params:
+//   $breakpoint   - A single common breakpoint name
+//   $teaser       - Optionally drop teaser padding
+//
+// Ex:
+//   .carousel-hybrid {
+//     @include disable-flexslider(tablet-landscape);
+//   }
+@mixin disable-flexslider($breakpoint: 'tablet', $teaser: true) {
+  @include respond-to($breakpoint) {
+    %drop-flex-padding {
+      @include rem(padding, 0);
+    }
+    .flex-nav-container {
+      @extend %drop-flex-padding;
+    }
+    .slides {
+      // !important is needed to override Flexslider JS.
+      width: 100% !important;
+    }
+    .flex-direction-nav {
+      display: none;
+    }
+    @if $teaser {
+      .teaser {
+        @extend %drop-flex-padding;
+      }
+    }
+  }
+}
+
+// Disables Flexslider controls
+// Version 2 used with opwatch carousels
+//
+// Ex:
+//   .carousel-hybrid {
+//     @include respond-to(tablet-max) {
+//       @include disable-flexslider2;
+//     }
+//   }
+
+@mixin disable-flexslider2 {
+  .flex-nav-container {
+    padding: 0;
+  }
+  .flex-direction-nav {
+    display: none;
+  }
+  .slides {
+    -webkit-transition: none !important;
+    transition: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+    width: auto !important;
+    li {
+      @include rem(padding-bottom, 15px);
+
+      &:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+
+      // Overrides inline flexslider styles.
+      width: auto !important;
+      float: none !important;
+    }
+  }
+}
+
+// Font Icon Base
+// Create the base CSS needed for font icons
+// Provides @content for optional custom font-size, color or padding
+//
+// Params:
+//   $family        - The font-family name to use, specified in @font-face call
+//   $color         - Optional color, defaults to false
+//   $hover-color   - Optional hover-color, defaults to false
+//   $shadow        - Optional shadow, pass in values to text-shadow() if needed
+//
+// Ex:
+//   .mylist li a {
+//     @include f-icon-base('fontello', $color: #fff, $shadow: (#0f0f0f) 2px 2px 2px);
+//   }
+//
+@mixin f-icon-base($family: 'fontello', $color: false, $hover-color: false, $shadow: false ) {
+  text-decoration: none;
+  &:before {
+    font-family: $family;
+    font-style: normal;
+    cursor: pointer;
+    display: inline-block;
+    speak: none;
+    @if $color {
+      color: $color;
+    }
+
+    @content;
+
+  }
+  &:hover:before {
+    @if $shadow {
+      @include text-shadow($shadow);
+    }
+    @if $hover-color {
+      color: $hover-color;
+    }
+  }
+
+}
+
+// Font Icon
+// Add the unicode char and additional custom variances on an icon
+// Provides @content for optional custom font-size, color or padding
+//
+// Params:
+//   $char          - The character that calls the appropriate font-icon
+//   $color         - Optional color, defaults to false
+//   $hover-color   - Optional hover-color, defaults to false
+//
+// Ex:
+//   .twitter {
+//     @include f-icon('\f31f', #eed194);
+//   }
+//
+@mixin f-icon($char, $color:false, $hover-color:false) {
+  &:before {
+    content: "#{$char}";
+    @if $color {
+      color: #{$color};
+    }
+
+    @content;
+
+  }
+  @if $hover-color {
+    &:hover:before {
+      color: #{$hover-color};
+    }
+  }
+}
+
+// Font-Face
+// Add @font-face snippets easily
+//
+// Params:
+//   $family        - The font-family name
+//   $file          - Optional file name if different from font-family
+//
+// Ex:
+//   @include font-face('Fontname regular', $file: 'fontname', $path: 'alt-font/')
+//
+@mixin font-face($family, $file: false, $path: false) {
+  $full-path: null;
+  @if $file == false {
+    $file: $family;
+  }
+  @if $path == false {
+    $path: $family;
+    $full-path: "#{$path}/";
+  } @else {
+    $full-path: $path;
+  }
+  @font-face {
+    font-family: '#{$family}';
+    src: font-url('#{$full-path}#{$file}.eot');
+    src: font-url('#{$full-path}#{$file}.eot?#iefix') format('embedded-opentype'),
+         font-url('#{$full-path}#{$file}.woff') format('woff'),
+         font-url('#{$full-path}#{$file}.ttf') format('truetype'),
+         font-url('#{$full-path}#{$file}.svg##{$family}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+// REM
+// Output a given style rule containing rem values along with an (optional)
+// fallback rule for older browsers (with rem values converted to px).
+//
+// Params:
+//   $property        - The css property name.
+//   $px-values       - The value (or space-separated list of values) for the property.
+//   $use-px-fallback - [ true | false ]
+//
+@mixin rem($property, $values, $use-px-fallback: $rem-with-px-fallback) {
+  // Create a couple of empty lists as output buffers.
+  $px-values: ();
+  $rem-values: ();
+
+  // Loop through the $values list
+  @each $value in $values {
+    // For each property value, if it's in rem or px, derive both rem and
+    // px values for it and add those to the end of the appropriate buffer.
+    // Ensure all pixel values are rounded to the nearest pixel.
+    @if type-of($value) == number and not unitless($value) and (unit($value) == px or unit($value) == rem) {
+      @if unit($value) == px {
+        $px-values: join($px-values, round($value));
+        $rem-values: join($rem-values, convert-length($value, rem));
+      }
+      @else {
+        $px-values: join($px-values, round(convert-length($value, px)));
+        $rem-values: join($rem-values, $value);
+      }
+    }
+    @else {
+      $px-values: join($px-values, $value);
+      $rem-values: join($rem-values, $value);
+    }
+  }
+
+  // Use pixel fallback for browsers that don't understand rem units.
+  @if $use-px-fallback {
+    #{$property}: $px-values;
+  }
+
+  // Use rem values for everyone else (overrides pixel values).
+  #{$property}: $rem-values;
+}
+
+// EM Convertor
+// Convert px to em
+//
+//   $target     - The value in px.
+//   $context    - The base line height.
+//
+@function em($target, $context: $base-font-size) {
+    @return ($target / $context) * 1em;
+}
+
+// % Convertor
+// Convert px to %
+//
+//   $target     - The value in px.
+//   $context    - The context to calculate with.
+//
+@function to-percentage($target, $context) {
+  @return ($target / $context) * 100%;
+}
+
+// Calc
+// Provides fallback and vendor-specific prefixes for calc.
+// http://caniuse.com/calc
+//
+// $property     - Ex: 'max-width'.
+// $expression   - Expression to calculate the value from. Ex: '100% - 60px'.
+// $fallback     - Expression for browsers without calc support. Ex: '80%'.
+@mixin calc($property, $expression, $fallback) {
+  #{$property}: #{$fallback};
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// Retina Wrapper
+// Wrap anything in a retina query
+//
+// Params:
+//   $background-size - Optional value to set background size
+//
+@mixin retina-wrapper($background-size: 16px) {
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2 / 1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    @content;
+    @if $background-size {
+      @include background-size($background-size);
+    }
+  }
+}
+
+// No Mobile
+// Used to hide a component on the mobile breakpoint
+//
+// Params:
+//   $non-mobile-display: Optional, 'display' value from tablet on up.
+//
+@mixin no-mobile($non-mobile-display: block) {
+  display: none;
+  @include respond-to(tablet) {
+    display: $non-mobile-display;
+  }
+}
+
+// Mobile Only
+// The exact opposite of No Mobile
+//
+// Params:
+//   $mobile-display: Optional, 'display' value for mobile.
+//
+@mixin mobile-only($mobile-display: block) {
+  display: $mobile-display;
+  @include respond-to(tablet) {
+    display: none;
+  }
+}
+
+// Responsive Video iframe
+// Ensures a videos iframe takes 100% width and the height acts as auto.
+//
+// @see http://avexdesigns.com/responsive-youtube-embed/
+//
+// Params
+//   $iframe-container: the selector of the iframe's container. Ex: '.field'.
+//
+@mixin responsive-video-iframe($iframe-container) {
+  #{$iframe-container} {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+
+    iframe {
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// Teaser Play Icon
+// Puts a little play icon in the top left corner of an element.
+@mixin teaser-icon-media($icon: video, $size: large, $top: 0, $left: 0) {
+  @include generate-sprite-map($media-small, $media-small2x, $with-dimensions: false);
+  @if $size == small {
+    @include rem(width, 25px);
+    @include rem(height, 20px);
+    background-image: image-url("generated/media-small.png");
+    @if $icon == video {
+      background-position: center -149px;
+      @include retina-wrapper($background-size: 50%) {
+        background-image: image-url("generated/media-small2x.png");
+        background-position: center -100px;
+      }
+    }
+    @if $icon == poll {
+      background-position: center -47px;
+      @include retina-wrapper($background-size: 50%) {
+        background-image: image-url("generated/media-small2x.png");
+        background-position: center -31px;
+      }
+    }
+    @if $icon == infographic {
+      background-position: center 4px;
+      @include retina-wrapper($background-size: 50%) {
+        background-image: image-url("generated/media-small2x.png");
+        background-position: center 4px;
+      }
+    }
+    @if $icon == slideshow {
+      background-position: center -98px;
+      @include retina-wrapper($background-size: 50%) {
+        background-image: image-url("generated/media-small2x.png");
+        background-position: center -65px;
+      }
+    }
+  }
+  @if $size == large {
+    @include rem(width, 70px);
+    @include rem(height, 30px);
+    @include retina-sprite-item('#{$icon}', $media, $media2x, $offset-x: 50%, $offset-y: 4px);
+  }
+  @if $size == huge {
+    @include rem(width, 90px);
+    @include rem(height, 50px);
+    @include retina-sprite-item('#{$icon}', $media, $media2x, $offset-x: 50%, $offset-y: 15px);
+  }
+  content: '';
+  position: absolute;
+  top: $top;
+  left: $left;
+  display: block;
+  background-color: $primary;
+  background-repeat: no-repeat;
+}
+
+// Teaser Label Text
+// Puts a text label in the top left corner of an element.
+//
+// Ex:
+//   .selector {
+//     @include teaser-label-text('label content');
+//   }
+//
+@mixin teaser-label-text($content) {
+  content: $content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  @include rem(height, 24px);
+  @include rem(padding, 0 7px);
+  display: block;
+  @include adjust-font-size-to($xxsmallpx);
+  line-height: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: $primary;
+  background-image: none;
+}
+
+// Operation Watch Arrow
+// Adds a white Operation Watch arrow.
+//
+// Params:
+//   $size - the size of the arrow. Options:
+//           - 'large' (30x15 up/down and 15x30 left/right)
+//           - 'small' (20x10 up/down and 12x20 left/right)
+//           - 'tiny' (15x8 up/down and 8x18 left/right)
+//
+// The sprite is as wide as the up/down arrows (30px) and each one takes up 60px
+// of height. Because placement will vary by use case, background-position
+// should be specified every time for proper arrow placement. The order of the
+// arrows is up, down, left, right.
+@mixin opwatch-arrow($size: 'large') {
+  background-repeat: no-repeat;
+  background-image: image-url('opwatch/opwatch-arrows-white.svg');
+  @if $size == 'large' {
+    background-size: 30px 240px;
+  }
+  @else if $size == 'small' {
+    background-size: 20px 160px;
+  }
+  @else if $size == 'tiny' {
+    background-size: 15px 120px;
+  }
+}
+
+// Pseudo content text
+// Only to be applied to images as overlays
+@mixin teaser-overlay-content($content: '', $width: 170px, $height: 50px, $position: absolute, $top: 0, $left: 0) {
+  @if $position == absolute {
+    position: absolute;
+    left: $left;
+    top: $top;
+  } @else {
+    position: $position;
+  }
+  @if $content != '' {
+    content: $content;
+  }
+
+  background-color: rgba(0,0,0,0.8);
+  display: block;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  @include rem(width, $width);
+  @include rem(height, $height);
+}
+
+
+// Gutter
+// Padding or margin offsets based on grid gutter by default
+//
+// Params:
+//   $gutter-width: Either pixel amount or 'full' or 'half' based on $zen-gutter-width
+//   $spacing-type: Optional,margin or padding, defaults to padding
+//   $gutter-side: Optional, left, right or both, defaults to both.
+//   $offset: Optional, push or pull, defaults to push
+@mixin gutter (
+  $gutter-width     : $zen-gutter-width,
+  $spacing-type     : 'padding',
+  $gutter-side      : 'both',
+  $offset           : 'push') {
+  $width : $zen-gutter-width;
+  $dir : $gutter-side;
+
+  @if $gutter-width == 'half' {
+    $width : zen-half-gutter();
+  } @elseif $gutter-width == 'full' {
+    $width : $zen-gutter-width
+  } @elseif $gutter-width == 'none' {
+    $width : 0;
+  } @else {
+    $width : $gutter-width;
+  }
+
+  @if $offset == 'pull' {
+    $width : -#{$width};
+  }
+
+  @if $dir == 'both' {
+    #{$spacing-type}-left: $width;
+    #{$spacing-type}-right: $width;
+  } @else {
+    #{$spacing-type}-#{$dir}: $width;
+  }
+
+}
+
+// Padding-Bottom Hack
+// Prevents layout breaking when images are loading.
+// Must be inserted directly into an images container class.
+//
+// @see
+// http://mobile.smashingmagazine.com/2013/09/16/responsive-images-performance-problem-case-study/
+//
+// Params:
+//   $aspect-ratio-x    - The x value as a unitless number.
+//   $aspect-ratio-y    - The y value as a unitless number.
+@mixin padding-bottom-hack($aspect-ratio-x: 3, $aspect-ratio-y: 2) {
+  position: relative;
+  padding-bottom: percentage($aspect-ratio-y / $aspect-ratio-x);
+  height: 0;
+  overflow: hidden;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Forces the scrollbar on Webkit to appear for divs having overflow: scrollbar.
+//
+// Params:
+//   $scrollbar-width   - The width of the scrollbar; defaults to 7px.
+//   $scrollbars        - Which scrollbars affected; can be vertical, horizontal, or both.
+//   $show-track        - Whether the track area of the scrollbar should be visible.
+@mixin force-webkit-scrollbar($scrollbar-width: 7px, $scrollbars: vertical, $show-track: true) {
+  &::-webkit-scrollbar {
+    // First turn off the default scrollbar styling.
+    -webkit-appearance: none;
+
+    // But give the unstyled scrollbar a width.
+    @if $scrollbars == both or $scrollbars == vertical {
+      &:vertical {
+        width: $scrollbar-width;
+      }
+    }
+    @if $scrollbars == both or $scrollbars == horizontal {
+      &:horizontal {
+        height: $scrollbar-width;
+      }
+    }
+  }
+  // Style the scrollbar thumb to match OS X defaults.
+  &::-webkit-scrollbar-thumb {
+    @include border-radius($scrollbar-width - 1px);
+    border: 1px solid rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .5);
+  }
+  // Style the track to accent the scrollable area.
+  @if $show-track {
+    &::-webkit-scrollbar-track {
+      margin: 1px 0;
+      background: rgba(0, 0, 0, .1);
+    }
+  }
+}

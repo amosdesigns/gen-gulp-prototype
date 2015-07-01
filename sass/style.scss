@@ -1,19 +1,17 @@
-//////////////////////////////
-// D3nyc
-//////////////////////////////
+/**
+ * @file
+ * The main styles for the leanforward theme.
+ */
 @import "compass";
-@import "vars";
 @import "zen";
-@import "layout";
-body{background-color: $baseColor;
-  &.about{background-color: $baseColor;}
-  &a{
-    &:hover{color:pink;}
-  }
-}
+@import "zen/background";
+@import "breakpoint";
 
-#box-shadow-custom {
-  font-size:18px;
-}
+// Include all the things!
+@import "global/global";
+@import "base/base";
+@import "layout/layout";
+@import "components/components";
+
 
 
