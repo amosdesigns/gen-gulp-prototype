@@ -13,7 +13,7 @@ var gutil = require('gulp-util'),
 // Internal Vars
 //////////////////////////////
 var toSass = [
-  'sass/**/*.scss'
+  'sass/*.scss'
 ];
 
 //////////////////////////////

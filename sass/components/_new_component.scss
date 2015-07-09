@@ -1,0 +1,17 @@
+body {
+  position: relative;
+  display: block;
+  background-color: gray;
+  margin: 200px 0px;
+
+  .component-container {
+    background-color: white;
+    display: block;
+    width: 500px;
+    position: relative;
+    color: black;
+    border: 1px solid #666;
+    padding: 15px;
+    margin: 0px auto;
+  }
+}
