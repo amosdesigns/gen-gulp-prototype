@@ -59,3 +59,5 @@ timeline.sublime-project
 timeline.sublime-workspace
 
 style.css
+/sass/**.css
+/css/**.css
