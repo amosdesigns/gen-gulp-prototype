@@ -3,15 +3,86 @@ body {
   display: block;
   background-color: gray;
   margin: 200px 0px;
-
+}
   .component-container {
-    background-color: white;
+    background-color: #ffffff;
     display: block;
-    width: 500px;
+    width: 80vw;
     position: relative;
     color: black;
-    border: 1px solid #666;
     padding: 15px;
     margin: 0px auto;
+    header {
+      display: block;
+    }
+  }
+
+.days_of_week_menu {
+  display: none;
+  &.desktop_view_only {
+    display: block;
+    ul {
+      position: relative;
+      display: block;
+      padding-left: 0px;
+      width: 100vw;
+      text-align: center;
+      margin: 0px auto;
+      li {
+        float: left;
+        display: inline-block;
+        a {
+          text-transform: capitalize;
+          display: block;
+          width: 100px;
+          line-height: 2;
+          &:hover {
+
+          }
+        }
+      }
+    }
+  }
+}
+.msnbc-all-schedule-display{
+   display: block;
+  clear:both;
+  .view-grouping-header{
+    text-transform: capitalize;
+    line-height: 2;
+    border-bottom: #ccc solid 2px;
+  }
+  .view-grouping-content{
+    display: block;
+    li {
+      border-bottom: #ccc solid 2px;
+      img.show_icon {
+        display: none;
+        width: 150px;
+        max-width: 150px;
+        overflow: hidden;
+        float:left;
+      }
+      .copy {
+       clear:right;
+        .field-type-time-of-day {
+          color: pink
+        }
+        .field-type-list-text {
+          color: pink
+        }
+        h3 a {
+          &:link {
+            color: pink
+          }
+          &:hover {
+            color: pink
+          }
+        }
+        .field-type-text {
+          color: pink
+        }
+      }
+    }
   }
 }
